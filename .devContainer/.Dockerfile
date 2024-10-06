@@ -1,5 +1,7 @@
 FROM python:3.12.4-bookworm
 
+WORKDIR /root/source_code
+
 RUN pip3 install dash
 RUN pip3 install pandas
 RUN pip3 install utils
