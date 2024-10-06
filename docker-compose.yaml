@@ -14,7 +14,7 @@ services:
       - 9001:80
 
     volumes:
-       - source_code:/root/source_code
+       - ./source_code:/root/source_code
        - vscode-server:/root/.vscode-server
 
     environment:

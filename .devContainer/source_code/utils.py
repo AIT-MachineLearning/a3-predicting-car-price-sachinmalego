@@ -11,7 +11,7 @@ def load(filename:str) -> object:
         b = pickle.load(handle)
     return b
 
-model_name = "st125171-a3-model"
+model_name = os.environ["APP_MODEL_NAME"]
 def load_mlflow(stage='Staging'):
     cache_path = os.path.join("models",stage)
     if(os.path.exists(cache_path) == False):

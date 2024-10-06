@@ -21,6 +21,6 @@ RUN pip3 install dash[testing]
 RUN pip3 install pytest
 RUN pip3 install pytest-depends
 
-COPY ./src/source_code /root/source_code
+COPY .devContainer/source_code /root/source_code
 
 CMD tail -f /dev/null
