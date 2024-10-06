@@ -26,3 +26,16 @@ def load_mlflow(stage='Staging'):
 
     model = load(path)
     return model
+
+def register_model_to_production():
+    from mlflow.client import MlflowClient
+    client = MlflowClient()
+    for model in client.get_registered_models('st125171-a3').latest_versions:
+        #find model in staging
+        if(model.current_stage == 'Staging'):
+            version = model.version
+            client.transition_model_version_stage(
+                name=model.name,
+                version=model.version,
+                stage='Production'
+            )
