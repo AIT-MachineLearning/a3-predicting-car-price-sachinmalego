@@ -64,7 +64,6 @@ jobs:
           proxy_host: ${{ vars.PROXY_HOST }}
           proxy_username: ${{ secrets.USERNAME }}
           proxy_key: ${{ secrets.PROXY_KEY }}
-          proxy_port: 22
           script: |
             docker pull sachinmalego/carpredictionasgthree:latest
             docker compose -f st125171/docker-compose.yaml down --remove-orphans
