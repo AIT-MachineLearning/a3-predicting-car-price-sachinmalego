@@ -49,21 +49,53 @@ jobs:
       - name: Push Docker image to DockerHub
         run: docker push ${{ secrets.DOCKER_USERNAME }}/carpredictionasgthree:latest
 
+  # deploy:
+  #   needs: build
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: ssh proxy command
+  #       uses: appleboy/ssh-action@v1.1.0
+  #       with:
+  #         proxy_host: ${{ vars.PROXY_HOST }}
+  #         proxy_username: ${{ secrets.USERNAME }}
+  #         proxy_password: ${{ secrets.PASSWORD }}
+  #         host: ${{ vars.HOST }}
+  #         username: ${{ secrets.USERNAME }}
+  #         key: ${{ secrets.SSH_PRIVATE_KEY }}
+  #         password: ${{ secrets.PASSWORD }}
+  #         passphrase: ${{ secrets.PASSPHRASE }}
+  #         script: |
+  #           docker pull sachinmalego/carpredictionasgthree:latest
+  #           docker compose -f st125171/docker-compose.yaml down --remove-orphans
+  #           docker compose -f st125171/docker-compose.yaml up -d
+
   deploy:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: ssh proxy command
+      # Checkout the code
+      - name: Checkout code
+        uses: actions/checkout@v3
+      
+      # Install ssh-agent to manage the SSH key
+      - name: Set up SSH agent
+        uses: webfactory/ssh-agent@v0.8.1
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          ssh-passphrase: ${{ secrets.PASSPHRASE }}  # If the key is passphrase-protected
+
+      # Execute the deployment commands over SSH
+      - name: Deploy via SSH
         uses: appleboy/ssh-action@v1.1.0
         with:
-          proxy_host: ${{ vars.PROXY_HOST }}
-          proxy_username: ${{ secrets.USERNAME }}
-          proxy_password: ${{ secrets.PASSWORD }}
           host: ${{ vars.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          password: ${{ secrets.PASSWORD }}
-          passphrase: ${{ secrets.PASSPHRASE }}
+          passphrase: ${{ secrets.PASSPHRASE }}  # Required for passphrase-protected key
+          proxy_host: ${{ vars.PROXY_HOST }}
+          proxy_username: ${{ secrets.USERNAME }}
+          proxy_password: ${{ secrets.PASSWORD }}
+          proxy_port: 22
           script: |
             docker pull sachinmalego/carpredictionasgthree:latest
             docker compose -f st125171/docker-compose.yaml down --remove-orphans
