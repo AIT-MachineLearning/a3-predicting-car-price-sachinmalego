@@ -49,7 +49,6 @@ jobs:
       - name: Push Docker image to DockerHub
         run: docker push ${{ secrets.DOCKER_USERNAME }}/carpredictionasgthree:latest
   
-
   deploy:
     needs: build
     runs-on: ubuntu-latest
@@ -57,14 +56,22 @@ jobs:
       # Checkout the code
       - name: Checkout code
         uses: actions/checkout@v3
-      
+
       # Install ssh-agent to manage the SSH key
       - name: Set up SSH agent
         uses: webfactory/ssh-agent@v0.5.4
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-          ssh-passphrase: ${{ secrets.PASSPHRASE }}  # If the key is passphrase-protected
+      
+      # Store the passphrase in a temporary file
+      - name: Store Passphrase
+        run: echo "${{ secrets.PASSPHRASE }}" > passphrase.txt
 
+      # Add the SSH key to the agent with the passphrase
+      - name: Add SSH key with passphrase
+        run: |
+          ssh-add - <<< "${{ secrets.PASSPHRASE }}"
+      
       # Create SSH config for proxy jump
       - name: Set up SSH config
         run: |
@@ -86,4 +93,4 @@ jobs:
 
 
 
-    
+      
