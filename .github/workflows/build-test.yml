@@ -63,14 +63,12 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
       
-      # Store the passphrase in a temporary file
-      - name: Store Passphrase
-        run: echo "${{ secrets.PASSPHRASE }}" > passphrase.txt
-
       # Add the SSH key to the agent with the passphrase
       - name: Add SSH key with passphrase
+        env:
+          PASSPHRASE: ${{ secrets.PASSPHRASE }}
         run: |
-          ssh-add - <<< "${{ secrets.PASSPHRASE }}"
+          echo "$PASSPHRASE" | ssh-add - <<< "${{ secrets.SSH_PRIVATE_KEY }}"
       
       # Create SSH config for proxy jump
       - name: Set up SSH config
@@ -93,4 +91,5 @@ jobs:
 
 
 
-      
+
+        
