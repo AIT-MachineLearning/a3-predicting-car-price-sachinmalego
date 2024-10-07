@@ -58,7 +58,7 @@ jobs:
         with:
           proxy_host: ${{ vars.PROXY_HOST }}
           proxy_username: ${{ secrets.USERNAME }}
-          password: ${{ secrets.PASSWORD }}
+          password: ${{ secrets.PROXY_PASSWORD }}
           proxy_key: ${{ secrets.PROXY_KEY }}
 
       - name: SSH Remote Commands
