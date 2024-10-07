@@ -53,11 +53,6 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: ssh proxy command
-        uses: appleboy/ssh-action@v1.0.0
-        with:
-          
-
       - name: SSH Remote Commands
         uses: appleboy/ssh-action@v1.0.0
         with:
