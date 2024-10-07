@@ -32,7 +32,7 @@ def test_get_X():
 
 # Test the predict_selling_price callback function
 def test_selling_price():
-    output = predict_model(*feature_vals)
+    output = predict_model(*feature_vals, 1)
     #assert output[0] in possible_outputs
     if isinstance(output, str):
         output = np.array([output])
