@@ -56,14 +56,14 @@ jobs:
       - name: ssh proxy command
         uses: appleboy/ssh-action@v1.0.0
         with:
-          host: ${{ vars.HOST }}
-          proxy_host: ${{ vars.PROXY_HOST }}
-          proxy_username: ${{ secrets.USERNAME }}
-          password: ${{ secrets.PROXY_PASSWORD }}
+          
 
       - name: SSH Remote Commands
         uses: appleboy/ssh-action@v1.0.0
         with:
+          proxy_host: ${{ vars.PROXY_HOST }}
+          proxy_username: ${{ secrets.USERNAME }}
+          proxy_password: ${{ secrets.PROXY_PASSWORD }}
           host: ${{ vars.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
