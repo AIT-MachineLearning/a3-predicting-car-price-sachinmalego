@@ -3,6 +3,7 @@ from dash import Dash, html, callback, Output, Input, State, dcc
 import dash_bootstrap_components as dbc
 dash.register_page(__name__, path='/')
 
+
 layout = html.Div([
     html.Div([
         html.H1('Welcome to Car Price Prediction 2024 - Ver.3', style={'padding-top':'20px', 'color':'green', 'font-style':'bold', 'text-decoration':'underline', 'text-align':'center', 'padding-bottom':'10px'}),

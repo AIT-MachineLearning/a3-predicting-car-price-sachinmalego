@@ -124,7 +124,7 @@ def get_X(year, km_driven, mileage, engine):
     prevent_initial_call=True
 )
 
-def predict_model(input1, input2, input3, input4):
+def predict_model(self, input1, input2, input3, input4):
     from utils import load
     import pandas as pd
     import numpy as np
