@@ -65,7 +65,7 @@ jobs:
           proxy_passphrase: ${{ secrets.PASSPHRASE }}
           script: |
             docker pull sachinmalego/carpredictionasgthree:latest
-            docker compose -f st125171/docker-compose.yaml down --remove-orphans
+            docker compose -f st125171/docker-compose.yaml down --remove-orphans 
             docker compose -f st125171/docker-compose.yaml up -d
           
           
