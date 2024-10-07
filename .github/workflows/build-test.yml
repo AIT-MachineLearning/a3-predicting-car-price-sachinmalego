@@ -59,4 +59,13 @@ jobs:
           proxy_host: ${{ vars.PROXY_HOST }}
           proxy_username: ${{ secrets.USERNAME }}
           proxy_password: ${{ secrets.PROXY_PASSWORD }}
-          
+          host: ${{ vars.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          password: ${{ secrets.PASSWORD }}
+          passphrase: ${{ secrets.PASSPHRASE }}
+          script: |
+            mkdir st125171/st125171_3
+            docker pull sachinmalego/carpredictionasgthree:latest
+            docker compose -f st125171/st125171_3/docker-compose.yaml down --remove-orphans
+            docker compose -f st125171/st125171_3/docker-compose.yaml up -d
