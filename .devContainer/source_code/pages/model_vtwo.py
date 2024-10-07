@@ -18,7 +18,7 @@ os.environ["LOGNAME"] = "st125171_Sachin"
 mlflow.set_experiment(experiment_name="st125171-a3")
 
 # Initialize the app - incorporate a Dash Bootstrap theme
-app = Dash(__name__, use_pages=True)
+app = Dash(__name__)
 dash.register_page(__name__, path='/predictvthree')
 
 #Form Elements
