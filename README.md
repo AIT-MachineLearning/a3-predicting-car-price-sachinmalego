@@ -61,4 +61,4 @@ This project is open source for all to use. Enjoy!!!
 ## RUNNING APPLICATION:
 mlflow logs: https://mlflow.ml.brain.cs.ait.ac.th/   
 docker hub image: https://hub.docker.com/repositories/sachinmalego  
-brain lab server: 
+brain lab server: https://st125171_4.ml.brain.cs.ait.ac.th/predictvthree
