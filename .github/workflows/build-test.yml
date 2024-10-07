@@ -49,7 +49,7 @@ jobs:
         run: docker push ${{ secrets.DOCKER_USERNAME }}/carpredictionasgthree:latest
   
   deploy:
-    environment: Production
+    #environment: Production
     needs: build
     runs-on: ubuntu-latest
     steps:
@@ -59,12 +59,12 @@ jobs:
           host: ${{ vars.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
+          passphrase: ${{ secrets.PASSPHRASE }}
           proxy_host: ${{ vars.PROXY_HOST }}
           proxy_username: ${{ secrets.USERNAME }}
           proxy_key: ${{ secrets.SSH_PRIVATE_KEY }}
           proxy_passphrase: ${{ secrets.PASSPHRASE }}
           script: |
             docker pull sachinmalego/carpredictionasgthree:latest
-            docker compose -f st125171/st125171_3/docker-compose.yaml down --remove-orphans
-            docker compose -f st125171/st125171_3/docker-compose.yaml up -d
-    
+            docker compose -f st125171/docker-compose.yaml down --remove-orphans
+            docker compose -f st125171/docker-compose.yaml up -d
