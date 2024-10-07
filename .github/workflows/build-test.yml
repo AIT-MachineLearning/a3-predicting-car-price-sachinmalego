@@ -69,7 +69,7 @@ jobs:
             docker pull sachinmalego/carpredictionasgthree:latest
             docker compose -f st125171_4/docker-compose.yaml down --remove-orphans
             docker compose -f st125171/docker-compose.yaml down --remove-orphans 
-            docker compose -f st125171/docker-compose.yaml up -d
+            docker compose -f st125171_4/docker-compose.yaml up -d
           
           
           # debug: true 
