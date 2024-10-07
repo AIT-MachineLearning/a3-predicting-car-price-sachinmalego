@@ -7,6 +7,8 @@ run-name: ${{ github.actor }} Building and Testing
 # This tag will be used next when we build and push the image to dockerhub
 on:
   push:
+    branches: 
+      -main
     tags:
       - 'v*'
 # There can be multiple jobs
