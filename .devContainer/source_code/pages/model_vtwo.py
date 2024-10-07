@@ -17,7 +17,11 @@ os.environ['MLFLOW_TRACKING_PASSWORD'] = 'password'
 os.environ["LOGNAME"] = "st125171_Sachin"
 mlflow.set_experiment(experiment_name="st125171-a3")
 
-app = Dash(__name__)
+# Initialize the app - incorporate a Dash Bootstrap theme
+external_stylesheets = [dbc.themes.CERULEAN]
+app = Dash(__name__, use_pages=True,  external_stylesheets=[dbc.themes.BOOTSTRAP])
+server = app.server
+app.config.suppress_callback_exceptions = True
 dash.register_page(__name__, path='/predictvthree')
 
 #Form Elements
