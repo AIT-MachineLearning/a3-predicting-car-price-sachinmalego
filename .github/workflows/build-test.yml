@@ -65,6 +65,5 @@ jobs:
           proxy_key: ${{ secrets.SSH_PRIVATE_KEY }}
           proxy_passphrase: ${{ secrets.PASSPHRASE }}
           script: |
-            docker pull sachinmalego/carpredictionasgthree:latest
-            docker compose -f st125171/docker-compose.yaml down --remove-orphans
-            docker compose -f st125171/docker-compose.yaml up -d
+            tag=${{ github.ref_name }} docker compose -f st125171/docker-compose.yaml down
+            tag=${{ github.ref_name }} docker compose -f st125171/docker-compose.yaml up -d
